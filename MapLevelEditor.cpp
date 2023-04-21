@@ -77,7 +77,7 @@ public:
 		else if (spawnY == 0) spawn = 2;
 		else spawn = 4;
 	}
-
+	//Ausgang Setzen
 	void setOut() {
 		if (outX == 0) out = 3;
 		else if (outX == 9) out = 1;
@@ -390,7 +390,7 @@ public:
 		if (ts <= 0.9) return ts + 0.1;
 		return 1;
 	}
-
+	//Projektion
 	void createFOV() {
 		// 100 ist tile_s * 10
 		float start_angle = incrementGivenAngle(player_angle, player_FOVH);
@@ -501,12 +501,13 @@ public:
 	}
 
 	float angle2Radians(float angle) {
-		//1 Degree = pi over 180
+		//1 Grad = pi over 180
 		float OneDeg = pi / 180;
 
 		return OneDeg * angle;
 	}
-
+	
+	//Bereich des Spielers
 	void update_tiles(int x, int y) {
 
 		tile_x = int(x / tile_s);
@@ -574,7 +575,7 @@ public:
 			return;
 		}
 
-		//Reload
+		//Reloade Map
 		else if (GetKey(olc::Key::R).bHeld) {
 			readMap();
 			color_tiles();
@@ -692,12 +693,12 @@ public:
 
 		ifstream inputFile("map.cfg", ios::binary);
 
-		// Get the file size
+		// Get Dateigroesse
 		inputFile.seekg(0, ios::end);
 		int fileSize = inputFile.tellg();
 		inputFile.seekg(0, ios::beg);
 
-		// Read the file contents to a byte array
+		// Lese Dateinhalte in ein bytearray
 		char* buffer = new char[fileSize];
 		inputFile.read(buffer, fileSize);
 		inputFile.close();
@@ -706,7 +707,7 @@ public:
 		int x = 0;
 		int y = 0;
 
-		// Print the byte array
+		// Print bytearray
 		for (int i = 0; i < fileSize; i++) {
 			chr = (int)buffer[i];
 			switch (chr) {
@@ -733,7 +734,8 @@ public:
 	}
 
 	void saveMap()
-	{
+	{	
+		//Schreibe Byte
 		uint8_t wbyte;
 
 		std::ofstream outfile("map.cfg", std::ios::binary);
@@ -768,7 +770,7 @@ public:
 
 
 
-// Funktion, die die oben Programmierte Klasse "Example" aufruft, und somit das Spiel startet
+// Hauptfunktion, die die oben Programmierte Klasse "Example" aufruft, und somit das Spiel startet
 int main()
 {
 
