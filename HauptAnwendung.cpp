@@ -85,12 +85,12 @@ public:
 
 		ifstream inputFile("map.cfg", ios::binary);
 
-		// Get the file size
+		// Get Dateigroesse
 		inputFile.seekg(0, ios::end);
 		int fileSize = inputFile.tellg();
 		inputFile.seekg(0, ios::beg);
 
-		// Read the file contents to a byte array
+		// Lese Dateinhalte in ein bytearray
 		char* buffer = new char[fileSize];
 		inputFile.read(buffer, fileSize);
 		inputFile.close();
@@ -99,7 +99,7 @@ public:
 		int x = 0;
 		int y = 0;
 
-		// Print the byte array
+		// Print bytearray
 		for (int i = 0; i < fileSize; i++) {
 			chr = (int)buffer[i];
 			switch (chr) {
@@ -397,6 +397,7 @@ public:
 		return 1;
 	}
 
+	//Projektion
 	void createFOV() {
 		// 100 ist tile_s * 10
 		float start_angle = incrementGivenAngle(player_angle, player_FOVH);
@@ -507,7 +508,7 @@ public:
 	}
 
 	float angle2Radians(float angle) {
-		//1 Degree = pi over 180
+		//1 Degree = pi durch 180
 		float OneDeg = pi / 180;
 
 		return OneDeg * angle;
@@ -654,7 +655,7 @@ public:
 };
 
 
-// Funktion, die ein Objekt von "Example" instanziiert und somit das Spiel startet
+// Hauptfunktion, die ein Objekt von "Example" instanziiert und somit das Spiel startet
 int main()
 {
 
